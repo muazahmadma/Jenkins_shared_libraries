@@ -7,14 +7,14 @@ def call(Map config) {
         def fullImageName = "${env.DOCKER_USER}/${imageName}"
         
         sh """
-            echo "🔐 Logging into DockerHub..."
+            echo "Logging into DockerHub..."
             echo "\$DOCKER_PASS" | docker login -u "\$DOCKER_USER" --password-stdin
 
-            echo "📤 Pushing images..."
+            echo "Pushing images..."
             docker push ${fullImageName}:${buildTag}
             docker push ${fullImageName}:latest
 
-            echo "🚪 Logging out..."
+            echo "Logging out..."
             docker logout
         """
     }
